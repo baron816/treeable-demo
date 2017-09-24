@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AppComponent from './AppComponent';
 
+import { makeProps } from '../propHelper';
+
 import {
   updateSearchTerm
 } from '../actions';
@@ -25,11 +27,6 @@ function App(props) {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    rootNotes: rootNotes(state),
-    searchTerm: searchTerm(state)
-  }
-}
+var mapStateToProps = makeProps({rootNotes, searchTerm});
 
 export default connect(mapStateToProps, { updateSearchTerm })(App);

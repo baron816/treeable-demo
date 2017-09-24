@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import NoteComponent from './NoteComponent';
 import './Note.css'
 
+import { makeProps } from '../propHelper';
+
 import {
   createNote,
   removeNote,
@@ -104,12 +106,8 @@ Note.propTypes = {
   createNote: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    childNotes: childNotes(state, ownProps),
-    searchTerm: searchTerm(state)
-  };
-}
+
+var mapStateToProps = makeProps({childNotes, searchTerm});
 
 export default connect(mapStateToProps, {
   createNote,
