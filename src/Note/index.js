@@ -4,19 +4,7 @@ import { connect } from 'react-redux';
 import NoteComponent from './NoteComponent';
 import './Note.css'
 
-import { makeProps } from '../propHelper';
-
-import {
-  createNote,
-  removeNote,
-  changeSubject,
-  changeBody
-} from '../actions';
-
-import {
-  childNotes,
-  searchTerm
-} from '../selectors';
+import { makePropsFromActions, makePropsFromSelectors } from '../propHelper';
 
 function Note(props) {
   var c = new React.Component(props);
@@ -107,11 +95,12 @@ Note.propTypes = {
 }
 
 
-var mapStateToProps = makeProps({childNotes, searchTerm});
+var mapStateToProps = makePropsFromSelectors(['childNotes', 'searchTerm']);
+var mapDispatchToProps = makePropsFromActions([
+  'createNote',
+  'removeNote',
+  'changeSubject',
+  'changeBody'
+])
 
-export default connect(mapStateToProps, {
-  createNote,
-  removeNote,
-  changeSubject,
-  changeBody
-})(Note);
+export default connect(mapStateToProps, mapDispatchToProps)(Note);

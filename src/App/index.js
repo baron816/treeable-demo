@@ -2,16 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AppComponent from './AppComponent';
 
-import { makeProps } from '../propHelper';
-
-import {
-  updateSearchTerm
-} from '../actions';
-
-import {
-  rootNotes,
-  searchTerm
-} from '../selectors';
+import { makePropsFromActions, makePropsFromSelectors } from '../propHelper';
 
 function App(props) {
   var { rootNotes, updateSearchTerm } = props;
@@ -27,6 +18,7 @@ function App(props) {
   }
 }
 
-var mapStateToProps = makeProps({rootNotes, searchTerm});
+var mapStateToProps = makePropsFromSelectors(['rootNotes', 'searchTerm']);
+var mapDispatchToProps = makePropsFromActions(['updateSearchTerm']);
 
-export default connect(mapStateToProps, { updateSearchTerm })(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
