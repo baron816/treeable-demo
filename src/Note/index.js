@@ -11,6 +11,11 @@ import {
   changeBody
 } from '../actions';
 
+import {
+  childNotes,
+  searchTerm
+} from '../selectors';
+
 function Note(props) {
   var c = new React.Component(props);
 
@@ -28,11 +33,11 @@ function Note(props) {
   }
 
   function computeMatchStyle() {
-    var { note, term } = c.props;
+    var { note, searchTerm } = c.props;
     var subject = note.get('subject');
-    var matchSubject = new RegExp(term, 'i', 'g').test(subject);
+    var matchSubject = new RegExp(searchTerm, 'i', 'g').test(subject);
 
-    return matchSubject && term.length ? {border: '1px solid coral'} : {}
+    return matchSubject && searchTerm.length ? {border: '1px solid coral'} : {}
   }
 
   function handleAddNote(event) {
@@ -93,7 +98,7 @@ function Note(props) {
 
 Note.propTypes = {
   note: PropTypes.object.isRequired,
-  term: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string.isRequired,
   removeNote: PropTypes.func.isRequired,
   changeSubject: PropTypes.func.isRequired,
   createNote: PropTypes.func.isRequired
@@ -101,10 +106,8 @@ Note.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    childNotes: state.getIn(['notes', 'notes']).filter(function(note) {
-      return note.get('parentId') === ownProps.note.get('id');
-    }),
-    term: state.getIn(['base', 'searchTerm'])
+    childNotes: childNotes(state, ownProps),
+    searchTerm: searchTerm(state)
   };
 }
 

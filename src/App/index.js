@@ -6,6 +6,11 @@ import {
   updateSearchTerm
 } from '../actions';
 
+import {
+  rootNotes,
+  searchTerm
+} from '../selectors';
+
 function App(props) {
   var { rootNotes, updateSearchTerm } = props;
   return (
@@ -22,10 +27,8 @@ function App(props) {
 
 function mapStateToProps(state) {
   return {
-    rootNotes: state.getIn(['notes', 'notes']).filter(function(note) {
-      return note.get('parentId') === null;
-    }),
-    searchTerm: state.getIn(['base', 'searchTerm'])
+    rootNotes: rootNotes(state),
+    searchTerm: searchTerm(state)
   }
 }
 
