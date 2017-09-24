@@ -8,10 +8,11 @@ import {
 } from '../actions';
 
 function App(props) {
-  var { rootNotes, updateSearchTerm } = props;
+  var { rootNotes, updateSearchTerm, searchTerm } = props;
   return (
     <AppComponent
       rootNotes={rootNotes}
+      searchTerm={searchTerm}
       handleUpdateSearch={handleUpdateSearch}
     />
   );
