@@ -9,7 +9,7 @@ import {
   removeNote,
   changeSubject,
   changeBody
-} from './actions';
+} from '../actions';
 
 function Note(props) {
   var c = new React.Component(props);

@@ -10,3 +10,5 @@ export var removeNote = createAction(actp.REMOVE_NOTE, id => id);
 var idAndValue = (id, newValue) => ({id, newValue});
 export var changeSubject = createAction(actp.CHANGE_SUBJECT, idAndValue);
 export var changeBody = createAction(actp.CHANGE_BODY, idAndValue);
+
+export var updateSearchTerm = createAction(actp.UPDATE_SEARCH_TERM, term => term);

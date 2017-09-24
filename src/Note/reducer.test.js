@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import reducer from './reducer';
 
-import * as actions from './actions';
+import * as actions from '../actions';
 
 describe('Reducer', () => {
   var initialState = fromJS({

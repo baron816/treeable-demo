@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import * as actp from './actionTypes';
+import * as actp from '../actionTypes';
 
 const initialState = fromJS({
   searchTerm: ''

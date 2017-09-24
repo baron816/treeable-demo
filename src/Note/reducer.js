@@ -1,6 +1,6 @@
 import { fromJS, List } from 'immutable';
 import faker from 'faker';
-import * as actp from './actionTypes';
+import * as actp from '../actionTypes';
 
 var initialState = fromJS({
     notes: [

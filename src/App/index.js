@@ -4,7 +4,7 @@ import AppComponent from './AppComponent';
 
 import {
   updateSearchTerm
-} from './actions';
+} from '../actions';
 
 function App(props) {
   var { rootNotes, updateSearchTerm } = props;
