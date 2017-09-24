@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AppComponent from './AppComponent';
 
@@ -18,6 +19,10 @@ function App(props) {
   function handleUpdateSearch({target: {value}}) {
     updateSearchTerm(value);
   }
+}
+
+App.propTypes = {
+  updateSearchTerm: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

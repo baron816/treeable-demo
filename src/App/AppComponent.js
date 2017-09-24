@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ChildNotes from '../Note/ChildNotes';
 
 export default function AppComponent(props) {
@@ -13,4 +14,10 @@ export default function AppComponent(props) {
       <ChildNotes notes={rootNotes} />
     </div>
   );
+}
+
+AppComponent.propTypes = {
+  rootNotes: PropTypes.object.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  handleUpdateSearch: PropTypes.func.isRequired
 }
