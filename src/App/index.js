@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import AppComponent from './AppComponent';
 
-import { makePropsFromActions, makePropsFromSelectors } from '../propHelper';
+import { enhancedConnect } from '../propHelper';
 
 function App(props) {
   var { rootNotes, updateSearchTerm, searchTerm } = props;
@@ -24,7 +23,7 @@ App.propTypes = {
   updateSearchTerm: PropTypes.func.isRequired
 }
 
-var mapStateToProps = makePropsFromSelectors(['rootNotes', 'searchTerm']);
-var mapDispatchToProps = makePropsFromActions(['updateSearchTerm']);
+var mapStateToProps = ['rootNotes', 'searchTerm'];
+var mapDispatchToProps = ['updateSearchTerm'];
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default enhancedConnect(mapStateToProps, mapDispatchToProps)(App);

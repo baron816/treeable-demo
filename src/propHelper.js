@@ -1,6 +1,7 @@
 import * as selectors from './selectors';
 import * as actions from './actions';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 export function makeProps(selectors) {
   return function (state, ownProps) {
@@ -45,3 +46,12 @@ var pickSelectors = picks(selectors);
 
 export var makePropsFromActions = picks(actions);
 export var makePropsFromSelectors = compose(makeProps, pickSelectors);
+
+export function enhancedConnect(selectorList, actionList) {
+  return function (component) {
+    var mapStateToProps = selectorList.length ? makePropsFromSelectors(selectorList) : () => ({});
+    var mapDispatchToProps = actionList.length ? makePropsFromActions(actionList) : undefined
+
+    return connect(mapStateToProps, mapDispatchToProps)(component);
+  }
+}
