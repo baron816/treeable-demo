@@ -47,7 +47,7 @@ var pickSelectors = picks(selectors);
 export var makePropsFromActions = picks(actions);
 export var makePropsFromSelectors = compose(makeProps, pickSelectors);
 
-export function enhancedConnect(selectorList, actionList) {
+export function enhancedConnect(selectorList, actionList = []) {
   return function (component) {
     var mapStateToProps = selectorList.length ? makePropsFromSelectors(selectorList) : () => ({});
     var mapDispatchToProps = actionList.length ? makePropsFromActions(actionList) : undefined
